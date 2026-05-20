@@ -1,0 +1,141 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* ── Shadcn tokens ───────────────────────────────────────────── */
+    --background: 0 0% 100%;
+    --foreground: 20 14.3% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 20 14.3% 4.1%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14.3% 4.1%;
+    --primary: 42 73% 47%;       /* gold-500 #C9A227 */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 185 36% 47%;    /* teal-500 #4E9FA3 */
+    --secondary-foreground: 0 0% 100%;
+    --muted: 185 20% 95%;
+    --muted-foreground: 185 15% 40%;
+    --accent: 185 36% 95%;
+    --accent-foreground: 185 36% 25%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 185 20% 90%;
+    --input: 185 20% 90%;
+    --ring: 42 73% 47%;
+    --radius: 0.75rem;
+
+    /* ── Brand tokens ────────────────────────────────────────────── */
+    --gold:        #C9A227;
+    --gold-light:  #E8C547;
+    --gold-dark:   #A67C00;
+    --teal:        #4E9FA3;
+    --teal-light:  #7DC4C8;
+    --teal-dark:   #3A7F83;
+    --teal-bg:     #f0f9fa;
+    --teal-bg2:    #d9f0f1;
+    --dark:        #0d1117;
+    --dark-teal:   #122b2d;
+  }
+
+  * { @apply border-border box-border; }
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-white text-gray-800 antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  h1,h2,h3,h4,h5,h6 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+  }
+}
+
+@layer components {
+  /* ── Layout ── */
+  .page-container { @apply max-w-7xl mx-auto px-6; }
+  .section-pad    { @apply py-20; }
+
+  /* ── Badge ── */
+  .brand-badge {
+    @apply inline-block bg-teal-50 text-teal-600 text-xs font-bold
+           px-4 py-1.5 rounded-full uppercase tracking-widest border border-teal-100;
+  }
+  .gold-badge {
+    @apply inline-block bg-gold-100 text-gold-600 text-xs font-bold
+           px-4 py-1.5 rounded-full uppercase tracking-widest border border-gold-200;
+  }
+
+  /* ── Primary button (Gold) ── */
+  .btn-gold {
+    @apply bg-gradient-gold text-white font-black px-7 py-3 rounded-full
+           shadow-gold hover:shadow-gold-lg transition-all duration-200
+           flex items-center gap-2 text-sm hover:-translate-y-0.5;
+  }
+
+  /* ── Secondary button (Teal) ── */
+  .btn-teal {
+    @apply bg-gradient-teal text-white font-black px-7 py-3 rounded-full
+           shadow-teal hover:shadow-teal-lg transition-all duration-200
+           flex items-center gap-2 text-sm hover:-translate-y-0.5;
+  }
+
+  /* ── Outline gold ── */
+  .btn-gold-outline {
+    @apply border-2 border-[#C9A227] text-[#C9A227] font-black px-7 py-3 rounded-full
+           hover:bg-[#C9A227] hover:text-white transition-all duration-200
+           flex items-center gap-2 text-sm;
+  }
+
+  /* ── Outline teal ── */
+  .btn-teal-outline {
+    @apply border-2 border-[#4E9FA3] text-[#4E9FA3] font-black px-7 py-3 rounded-full
+           hover:bg-[#4E9FA3] hover:text-white transition-all duration-200
+           flex items-center gap-2 text-sm;
+  }
+
+  /* ── Card ── */
+  .brand-card {
+    @apply bg-white rounded-2xl border border-gray-100 shadow-card
+           hover:border-[#4E9FA3] hover:shadow-card-hover transition-all duration-300;
+  }
+
+  /* ── Gradient text ── */
+  .text-gold-gradient {
+    background: linear-gradient(135deg, #E8C547 0%, #C9A227 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .text-teal-gradient {
+    background: linear-gradient(135deg, #7DC4C8 0%, #4E9FA3 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* ── Swiper ── */
+  .swiper-pagination-bullet        { background: #C9A227 !important; opacity: 0.3 !important; }
+  .swiper-pagination-bullet-active { background: #C9A227 !important; opacity: 1   !important; }
+}
+
+@layer utilities {
+  .text-gold  { color: #C9A227; }
+  .text-teal  { color: #4E9FA3; }
+  .bg-brand   { background: linear-gradient(135deg, #E8C547 0%, #C9A227 100%); }
+  .bg-teal-brand { background: linear-gradient(135deg, #7DC4C8 0%, #4E9FA3 100%); }
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar-track { background: #f0f9fa; }
+::-webkit-scrollbar-thumb { background: linear-gradient(#E8C547, #C9A227); border-radius: 3px; }
+
+/* ── Selection ── */
+::selection { background: #C9A22730; color: #A67C00; }
+
+/* ── Remove default select appearance ── */
+select { -webkit-appearance: none; appearance: none; }
+
+/* ── Smooth image load ── */
+img { transition: opacity 0.3s ease; }
