@@ -139,16 +139,20 @@ app.use(errorHandler);
 
 // ─── Start Server ─────────────────────────────────────────────────────────────
 const startServer = async () => {
-  await connectDB();
-  app.listen(PORT, () => {
-    logger.info(`🚀 IVFMedIndia Server running on port ${PORT} [${process.env.NODE_ENV}]`);
-    logger.info(`📡 API: http://localhost:${PORT}/api`);
-    logger.info(`❤️  Health: http://localhost:${PORT}/health`);
+  try {
+    await connectDB();
+  } catch (err) {
+    logger.error('DB connection error (non-fatal):', err.message);
+  }
+
+  app.listen(PORT, '0.0.0.0', () => {
+    logger.info(`🚀 IVFMedIndia running on port ${PORT} [${process.env.NODE_ENV || 'production'}]`);
+    logger.info(`❤️  Health check: http://localhost:${PORT}/health`);
   });
 };
 
 startServer().catch((error) => {
-  logger.error('Server startup failed:', error);
+  console.error('FATAL startup error:', error);
   process.exit(1);
 });
 

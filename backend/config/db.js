@@ -40,8 +40,14 @@ const connectDB = async () => {
       logger.info('Database synced (alter mode)');
     }
   } catch (error) {
-    logger.error('Database connection failed:', error);
-    process.exit(1);
+    // Log the error but do NOT crash the server — allow health checks to work
+    // even when DB isn't configured yet
+    logger.error('Database connection failed:', error.message);
+    logger.warn('Server starting without database — configure DB_* env vars in Hostinger hPanel');
+    // Only exit in production if explicitly required
+    if (process.env.DB_REQUIRED === 'true') {
+      process.exit(1);
+    }
   }
 };
 
