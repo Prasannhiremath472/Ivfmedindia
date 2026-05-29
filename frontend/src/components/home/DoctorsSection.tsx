@@ -106,11 +106,14 @@ export default function DoctorsSection() {
                   </div>
                 </div>
 
-                {/* Info */}
-                <div className="p-5">
-                  <h3 className="font-black text-gray-900 mb-0.5 group-hover:text-[#C9A227] transition-colors">{doc.name}</h3>
-                  <p className="text-[#4E9FA3] text-sm font-bold mb-0.5">{doc.designation}</p>
-                  <p className="text-gray-400 text-xs mb-3">{doc.specialization}</p>
+                {/* Info — fixed-height rows so all cards align */}
+                <div className="p-5 flex flex-col">
+                  {/* Name — 1 line */}
+                  <h3 className="font-black text-gray-900 mb-0.5 group-hover:text-[#C9A227] transition-colors leading-snug line-clamp-1">{doc.name}</h3>
+                  {/* Designation — fixed height = 2 lines always */}
+                  <p className="text-[#4E9FA3] text-sm font-bold mb-0.5 leading-snug" style={{ minHeight: '2.5rem' }}>{doc.designation}</p>
+                  {/* Specialization — 1 line */}
+                  <p className="text-gray-400 text-xs mb-3 line-clamp-1">{doc.specialization}</p>
 
                   {/* Stars + experience */}
                   <div className="flex items-center justify-between mb-4">
