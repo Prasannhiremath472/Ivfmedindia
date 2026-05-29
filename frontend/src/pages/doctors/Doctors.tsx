@@ -11,11 +11,11 @@ const GG = 'linear-gradient(135deg,#E8C547 0%,#C9A227 60%,#A67C00 100%)';
 const TG = 'linear-gradient(135deg,#7DC4C8,#4E9FA3)';
 
 const fallback = [
-  { id: 1, name: 'Dr. Priya Sharma',        slug: 'dr-priya-sharma',        designation: 'Senior Fertility Specialist', specialization: 'IVF & Reproductive Medicine', experience_years: 18, profile_image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80', success_rate: 68.5, short_bio: 'Renowned IVF specialist with 18+ years experience.' },
-  { id: 2, name: 'Dr. Rajesh Malhotra',     slug: 'dr-rajesh-malhotra',     designation: 'Lead IVF Consultant',         specialization: 'Male Infertility & Andrology', experience_years: 15, profile_image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80', success_rate: 72.0, short_bio: "India's leading andrologist." },
-  { id: 3, name: 'Dr. Anjali Desai',        slug: 'dr-anjali-desai',        designation: 'Fertility & IVF Specialist',  specialization: 'PCOS & Endometriosis',        experience_years: 12, profile_image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=80', success_rate: 65.0, short_bio: 'Expert in PCOS-related fertility.' },
-  { id: 4, name: 'Dr. Vikram Nair',         slug: 'dr-vikram-nair',         designation: 'Chief Embryologist',          specialization: 'Embryology & Genetic Testing', experience_years: 14, profile_image: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&q=80', success_rate: 70.0, short_bio: 'Clinical embryologist with PhD.' },
-  { id: 5, name: 'Dr. Meera Krishnamurthy', slug: 'dr-meera-krishnamurthy', designation: 'Senior Gynaecologist',        specialization: 'Reproductive Surgery',         experience_years: 16, profile_image: 'https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=400&q=80', success_rate: 66.5, short_bio: 'Expert in fertility-preserving surgeries.' },
+  { id: 1, name: 'Dr. Priya Sharma',        slug: 'dr-priya-sharma',        designation: 'Senior Fertility Specialist', specialization: 'IVF & Reproductive Medicine', experience_years: 18, profile_image: '/images/imgi_69_2-300x300.png', success_rate: 68.5, short_bio: 'Renowned IVF specialist with 18+ years experience.' },
+  { id: 2, name: 'Dr. Rajesh Malhotra',     slug: 'dr-rajesh-malhotra',     designation: 'Lead IVF Consultant',         specialization: 'Male Infertility & Andrology', experience_years: 15, profile_image: '/images/imgi_65_1-300x300.png', success_rate: 72.0, short_bio: "India's leading andrologist specialising in male infertility." },
+  { id: 3, name: 'Dr. Anjali Desai',        slug: 'dr-anjali-desai',        designation: 'Fertility & IVF Specialist',  specialization: 'PCOS & Endometriosis',        experience_years: 12, profile_image: '/images/imgi_67_4-300x300.png', success_rate: 65.0, short_bio: 'Expert in PCOS-related fertility treatment.' },
+  { id: 4, name: 'Dr. Vikram Nair',         slug: 'dr-vikram-nair',         designation: 'Chief Embryologist',          specialization: 'Embryology & Genetic Testing', experience_years: 14, profile_image: '/images/imgi_71_3-300x300.png', success_rate: 70.0, short_bio: 'Clinical embryologist with PhD and international training.' },
+  { id: 5, name: 'Dr. Meera Krishnamurthy', slug: 'dr-meera-krishnamurthy', designation: 'Senior Gynaecologist',        specialization: 'Reproductive Surgery',         experience_years: 16, profile_image: '/images/imgi_69_2-300x300.png', success_rate: 66.5, short_bio: 'Expert in fertility-preserving laparoscopic surgeries.' },
 ];
 
 export default function Doctors() {
@@ -69,8 +69,8 @@ export default function Doctors() {
                   style={{ border: '1px solid rgba(201,162,39,0.15)', boxShadow: '0 2px 16px rgba(0,0,0,0.06)' }}
                   onMouseEnter={e => (e.currentTarget as HTMLElement).style.boxShadow = '0 12px 40px rgba(201,162,39,0.22)'}
                   onMouseLeave={e => (e.currentTarget as HTMLElement).style.boxShadow = '0 2px 16px rgba(0,0,0,0.06)'}>
-                  <div className="relative h-64 overflow-hidden bg-gray-100">
-                    <img src={doc.profile_image} alt={doc.name} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                  <div className="relative h-64 overflow-hidden" style={{ background: 'linear-gradient(160deg,#f0f9fa,#fdfbf0)' }}>
+                    <img src={doc.profile_image} alt={doc.name} className="w-full h-full object-contain object-bottom group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                     <div className="absolute top-3 right-3 rounded-2xl px-2.5 py-1.5 text-center shadow-lg" style={{ background: GG }}>
                       <div className="text-white font-black text-sm leading-none">{doc.success_rate}%</div>
                       <div className="text-white/80 text-[9px]">Success</div>

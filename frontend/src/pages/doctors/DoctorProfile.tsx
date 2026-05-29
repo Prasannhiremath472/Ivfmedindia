@@ -1,7 +1,6 @@
 ﻿import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Star, Award, Phone, Calendar, MapPin, ChevronRight, BookOpen } from 'lucide-react';
+import { Phone, Calendar, ChevronRight } from 'lucide-react';
 import SEOHead from '@/components/common/SEOHead';
 import { doctorApi } from '@/services/api';
 import { buildBreadcrumbSchema, SITE_URL } from '@/utils/seo';
@@ -16,7 +15,16 @@ export default function DoctorProfile() {
   useEffect(() => {
     doctorApi.getBySlug(slug!).then(r => setDoctor(r.data.doctor)).catch(() => {
       // Fallback data
-      setDoctor({ name: 'Dr. Priya Sharma', slug, designation: 'Senior Fertility Specialist', specialization: 'IVF & Reproductive Medicine', experience_years: 18, success_rate: 68.5, total_patients: 3200, profile_image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=600&q=80', qualifications: 'MBBS, MD (Obstetrics & Gynaecology), Fellowship in Reproductive Medicine (UK)', bio: "Dr. Priya Sharma is a renowned IVF specialist with 18+ years of experience. She has helped over 3,200 couples achieve parenthood through personalized, evidence-based fertility treatments. Trained at the Royal College of Obstetricians and Gynaecologists in the UK, Dr. Sharma brings international expertise to every patient she treats.\n\nShe specializes in complex IVF cases, recurrent implantation failure, and recurrent pregnancy loss. Her patient-first approach and compassionate care have made her one of India's most sought-after fertility specialists.", expertise: ['IVF & ICSI', 'Recurrent Implantation Failure', 'PCOS Management', 'Endometriosis', 'Recurrent Pregnancy Loss', 'Fertility Preservation'], languages: ['English', 'Hindi', 'Marathi'] });
+      // Map slug to the correct local image
+      const imageMap: Record<string, string> = {
+        'dr-priya-sharma':       '/images/imgi_69_2-300x300.png',
+        'dr-rajesh-malhotra':    '/images/imgi_65_1-300x300.png',
+        'dr-anjali-desai':       '/images/imgi_67_4-300x300.png',
+        'dr-vikram-nair':        '/images/imgi_71_3-300x300.png',
+        'dr-meera-krishnamurthy':'/images/imgi_69_2-300x300.png',
+      };
+      const profileImage = imageMap[slug!] || '/images/imgi_69_2-300x300.png';
+      setDoctor({ name: 'Dr. Priya Sharma', slug, designation: 'Senior Fertility Specialist', specialization: 'IVF & Reproductive Medicine', experience_years: 18, success_rate: 68.5, total_patients: 3200, profile_image: profileImage, qualifications: 'MBBS, MD (Obstetrics & Gynaecology), Fellowship in Reproductive Medicine (UK)', bio: "Dr. Priya Sharma is a renowned IVF specialist with 18+ years of experience. She has helped over 3,200 couples achieve parenthood through personalized, evidence-based fertility treatments. Trained at the Royal College of Obstetricians and Gynaecologists in the UK, Dr. Sharma brings international expertise to every patient she treats.\n\nShe specializes in complex IVF cases, recurrent implantation failure, and recurrent pregnancy loss. Her patient-first approach and compassionate care have made her one of India's most sought-after fertility specialists.", expertise: ['IVF & ICSI', 'Recurrent Implantation Failure', 'PCOS Management', 'Endometriosis', 'Recurrent Pregnancy Loss', 'Fertility Preservation'], languages: ['English', 'Hindi', 'Marathi'] });
     }).finally(() => setLoading(false));
   }, [slug]);
 
@@ -32,22 +40,27 @@ export default function DoctorProfile() {
         schema={buildBreadcrumbSchema([{ name: 'Home', url: SITE_URL }, { name: 'Doctors', url: `${SITE_URL}/doctors` }, { name: doctor.name, url: `${SITE_URL}/doctors/${slug}` }])}
       />
 
-      <section className="bg-gradient-to-br from-brand-700 to-brand-900 py-14">
-        <div className="container mx-auto px-4">
-          <nav className="flex items-center gap-2 text-white/60 text-sm mb-6">
-            <Link to="/" className="hover:text-white">Home</Link>
-            <ChevronRight size={14} />
-            <Link to="/doctors" className="hover:text-white">Doctors</Link>
-            <ChevronRight size={14} />
+      <section className="py-14" style={{ background: 'linear-gradient(135deg,#0d1117 0%,#122b2d 50%,#1a1500 100%)' }}>
+        <div className="max-w-7xl mx-auto px-6">
+          <nav className="flex items-center gap-2 text-white/50 text-sm mb-6">
+            <Link to="/" className="hover:text-white transition-colors">Home</Link>
+            <ChevronRight size={13} />
+            <Link to="/doctors" className="hover:text-white transition-colors">Doctors</Link>
+            <ChevronRight size={13} />
             <span className="text-white">{doctor.name}</span>
           </nav>
           <div className="grid md:grid-cols-3 gap-8 items-start">
             <div className="md:col-span-1">
-              <img src={doctor.profile_image} alt={doctor.name} className="w-full max-w-xs rounded-2xl shadow-xl mx-auto md:mx-0 object-cover object-top aspect-[3/4]" loading="eager" />
+              {/* White-background photo — use contain with teal-tinted bg */}
+              <div className="rounded-2xl overflow-hidden shadow-2xl mx-auto md:mx-0 max-w-xs aspect-square"
+                style={{ background: 'linear-gradient(160deg,#f0f9fa,#fdfbf0)' }}>
+                <img src={doctor.profile_image} alt={doctor.name}
+                  className="w-full h-full object-contain object-bottom" loading="eager" />
+              </div>
             </div>
             <div className="md:col-span-2 text-white">
-              <h1 className="text-4xl font-bold font-heading mb-2">{doctor.name}</h1>
-              <p className="text-teal-200 text-xl font-medium mb-1">{doctor.designation}</p>
+              <h1 className="text-4xl font-black mb-2">{doctor.name}</h1>
+              <p className="text-xl font-bold mb-1" style={{ color: '#7DC4C8' }}>{doctor.designation}</p>
               <p className="text-white/70 text-lg mb-4">{doctor.specialization}</p>
               <p className="text-white/80 text-sm mb-5">{doctor.qualifications}</p>
               <div className="flex flex-wrap gap-4 mb-6">

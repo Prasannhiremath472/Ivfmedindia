@@ -6,10 +6,10 @@ import { doctorApi } from '@/services/api';
 import { useAppStore } from '@/store/useAppStore';
 
 const fallback = [
-  { id: 1, name: 'Dr. Priya Sharma',       slug: 'dr-priya-sharma',       designation: 'Senior Fertility Specialist',  specialization: 'IVF & Reproductive Medicine', experience_years: 18, profile_image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80', success_rate: 68.5, total_patients: 3200 },
-  { id: 2, name: 'Dr. Rajesh Malhotra',    slug: 'dr-rajesh-malhotra',    designation: 'Lead IVF Consultant',          specialization: 'Male Infertility & Andrology', experience_years: 15, profile_image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80', success_rate: 72.0, total_patients: 2800 },
-  { id: 3, name: 'Dr. Anjali Desai',       slug: 'dr-anjali-desai',       designation: 'Fertility & IVF Specialist',   specialization: 'PCOS & Endometriosis',        experience_years: 12, profile_image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=80', success_rate: 65.0, total_patients: 2100 },
-  { id: 4, name: 'Dr. Vikram Nair',        slug: 'dr-vikram-nair',        designation: 'Chief Embryologist',           specialization: 'Embryology & Genetic Testing', experience_years: 14, profile_image: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&q=80', success_rate: 70.0, total_patients: 2500 },
+  { id: 1, name: 'Dr. Priya Sharma',       slug: 'dr-priya-sharma',       designation: 'Senior Fertility Specialist',  specialization: 'IVF & Reproductive Medicine', experience_years: 18, profile_image: '/images/imgi_69_2-300x300.png', success_rate: 68.5, total_patients: 3200 },
+  { id: 2, name: 'Dr. Rajesh Malhotra',    slug: 'dr-rajesh-malhotra',    designation: 'Lead IVF Consultant',          specialization: 'Male Infertility & Andrology', experience_years: 15, profile_image: '/images/imgi_65_1-300x300.png', success_rate: 72.0, total_patients: 2800 },
+  { id: 3, name: 'Dr. Anjali Desai',       slug: 'dr-anjali-desai',       designation: 'Fertility & IVF Specialist',   specialization: 'PCOS & Endometriosis',        experience_years: 12, profile_image: '/images/imgi_67_4-300x300.png', success_rate: 65.0, total_patients: 2100 },
+  { id: 4, name: 'Dr. Vikram Nair',        slug: 'dr-vikram-nair',        designation: 'Chief Embryologist',           specialization: 'Embryology & Genetic Testing', experience_years: 14, profile_image: '/images/imgi_71_3-300x300.png', success_rate: 70.0, total_patients: 2500 },
 ];
 
 export default function DoctorsSection() {
@@ -70,13 +70,17 @@ export default function DoctorsSection() {
               <div className="group rounded-3xl overflow-hidden bg-white transition-all duration-300 hover:-translate-y-2 hover:shadow-gold"
                 style={{ border: '1px solid rgba(201,162,39,0.15)', boxShadow: '0 2px 16px rgba(0,0,0,0.06)' }}>
 
-                {/* Photo area */}
-                <div className="relative h-64 overflow-hidden">
+                {/* Photo area — white bg photos use contain */}
+                <div className="relative h-64 overflow-hidden"
+                  style={{ background: 'linear-gradient(160deg,#f0f9fa 0%,#fdfbf0 100%)' }}>
                   <img src={doc.profile_image} alt={doc.name}
-                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" loading="lazy" />
-                  {/* Gradient overlay */}
+                    className="w-full h-full object-contain object-bottom transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                  {/* Subtle bottom gradient */}
+                  <div className="absolute bottom-0 left-0 right-0 h-16"
+                    style={{ background: 'linear-gradient(to top, rgba(13,17,23,0.08) 0%, transparent 100%)' }} />
+                  {/* Hover overlay */}
                   <div className="absolute inset-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100"
-                    style={{ background: 'linear-gradient(to top, rgba(13,17,23,0.6) 0%, transparent 60%)' }} />
+                    style={{ background: 'linear-gradient(to top, rgba(13,17,23,0.25) 0%, transparent 60%)' }} />
 
                   {/* Success rate badge */}
                   <div className="absolute top-3 right-3 rounded-2xl px-3 py-1.5 text-center shadow-lg"

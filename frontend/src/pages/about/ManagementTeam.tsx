@@ -7,10 +7,10 @@ const GG = 'linear-gradient(135deg,#E8C547 0%,#C9A227 60%,#A67C00 100%)';
 const TG = 'linear-gradient(135deg,#7DC4C8,#4E9FA3)';
 
 const team = [
-  { name: 'Dr. Priya Sharma',      role: 'Founder & Medical Director',     image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=400&q=80', bio: 'MBBS, MD (OBG), Fellowship in Reproductive Medicine (UK). 18+ years.', gold: true },
-  { name: 'Dr. Rajesh Malhotra',   role: 'Co-Founder & Chief Andrologist', image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=400&q=80', bio: 'MBBS, MS (Urology), Fellowship in Andrology (Germany). 15+ years.', gold: false },
-  { name: 'Dr. Anjali Desai',      role: 'Head of Clinical Operations',    image: 'https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=400&q=80', bio: 'MBBS, MD, Fellowship in Reproductive Endocrinology. 12+ years.', gold: true },
-  { name: 'Dr. Vikram Nair',       role: 'Chief Embryologist',             image: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=400&q=80', bio: 'PhD Embryology, Diploma in Clinical Embryology (Spain). 14+ years.', gold: false },
+  { name: 'Dr. Priya Sharma',      role: 'Founder & Medical Director',     image: '/images/imgi_69_2-300x300.png', bio: 'MBBS, MD (OBG), Fellowship in Reproductive Medicine (UK). 18+ years.', gold: true },
+  { name: 'Dr. Rajesh Malhotra',   role: 'Co-Founder & Chief Andrologist', image: '/images/imgi_65_1-300x300.png', bio: 'MBBS, MS (Urology), Fellowship in Andrology (Germany). 15+ years.', gold: false },
+  { name: 'Dr. Anjali Desai',      role: 'Head of Clinical Operations',    image: '/images/imgi_67_4-300x300.png', bio: 'MBBS, MD, Fellowship in Reproductive Endocrinology. 12+ years.', gold: true },
+  { name: 'Dr. Vikram Nair',       role: 'Chief Embryologist',             image: '/images/imgi_71_3-300x300.png', bio: 'PhD Embryology, Diploma in Clinical Embryology (Spain). 14+ years.', gold: false },
 ];
 
 export default function ManagementTeam() {
@@ -35,8 +35,8 @@ export default function ManagementTeam() {
               <motion.div key={m.name} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
                 className="rounded-3xl overflow-hidden group hover:-translate-y-2 transition-all duration-300"
                 style={{ border: `1px solid ${m.gold ? 'rgba(201,162,39,0.2)' : 'rgba(78,159,163,0.2)'}`, boxShadow: '0 2px 16px rgba(0,0,0,0.06)' }}>
-                <div className="h-56 overflow-hidden">
-                  <img src={m.image} alt={m.name} className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                <div className="h-56 overflow-hidden" style={{ background: 'linear-gradient(160deg,#f0f9fa,#fdfbf0)' }}>
+                  <img src={m.image} alt={m.name} className="w-full h-full object-contain object-bottom group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                 </div>
                 {/* Top accent bar */}
                 <div className="h-1" style={{ background: m.gold ? GG : TG }} />
