@@ -7,10 +7,10 @@ const GG = 'linear-gradient(135deg,#E8C547 0%,#C9A227 60%,#A67C00 100%)';
 const TG = 'linear-gradient(135deg,#7DC4C8,#4E9FA3)';
 
 const team = [
-  { name: 'Dr. Priya Sharma',      role: 'Founder & Medical Director',     image: '/images/imgi_69_2-300x300.png', bio: 'MBBS, MD (OBG), Fellowship in Reproductive Medicine (UK). 18+ years.', gold: true },
-  { name: 'Dr. Rajesh Malhotra',   role: 'Co-Founder & Chief Andrologist', image: '/images/imgi_65_1-300x300.png', bio: 'MBBS, MS (Urology), Fellowship in Andrology (Germany). 15+ years.', gold: false },
-  { name: 'Dr. Anjali Desai',      role: 'Head of Clinical Operations',    image: '/images/imgi_67_4-300x300.png', bio: 'MBBS, MD, Fellowship in Reproductive Endocrinology. 12+ years.', gold: true },
-  { name: 'Dr. Vikram Nair',       role: 'Chief Embryologist',             image: '/images/imgi_71_3-300x300.png', bio: 'PhD Embryology, Diploma in Clinical Embryology (Spain). 14+ years.', gold: false },
+  { name: 'Dr. Sachin Kulkarni', role: 'Chairman, Director, Chief IVF Specialist', image: '/images/doctor1.png', bio: 'Pioneer IVF specialist and director with 25+ years experience in reproductive medicine.', gold: true },
+  { name: 'Dr. Swati Kulkarni',  role: 'M.B.B.S, D.G.O',                          image: '/images/doctor2.png', bio: 'Specialist in obstetrics and gynaecology with extensive clinical experience.', gold: false },
+  { name: 'Dr. Sharayu Mohite',  role: 'M.B.B.S, D.G.O, D.N.B',                  image: '/images/doctor3.png', bio: 'DNB qualified gynaecologist specialising in infertility and reproductive medicine.', gold: true },
+  { name: 'Dr. Uma Gaikwad',     role: 'Fertility Consultant',                    image: '/images/doctor4.png', bio: 'Compassionate fertility consultant dedicated to personalised patient care.', gold: false },
 ];
 
 export default function ManagementTeam() {

@@ -15,20 +15,68 @@ export default function DoctorProfile() {
   useEffect(() => {
     doctorApi.getBySlug(slug!).then(r => setDoctor(r.data.doctor)).catch(() => {
       // Fallback data
-      // Map slug to the correct local image
-      const imageMap: Record<string, string> = {
-        'dr-priya-sharma':       '/images/imgi_69_2-300x300.png',
-        'dr-rajesh-malhotra':    '/images/imgi_65_1-300x300.png',
-        'dr-anjali-desai':       '/images/imgi_67_4-300x300.png',
-        'dr-vikram-nair':        '/images/imgi_71_3-300x300.png',
-        'dr-meera-krishnamurthy':'/images/imgi_69_2-300x300.png',
+      // Doctor profiles keyed by slug
+      const doctorProfiles: Record<string, any> = {
+        'dr-sachin-kulkarni': {
+          name: 'Dr. Sachin Kulkarni',
+          designation: 'Chairman, Director, Chief IVF Specialist',
+          specialization: 'IVF & Reproductive Medicine',
+          experience_years: 25,
+          success_rate: 72.0,
+          total_patients: 5000,
+          profile_image: '/images/doctor1.png',
+          qualifications: 'M.B.B.S, M.D, Fellowship in Reproductive Medicine',
+          bio: "Dr. Sachin Kulkarni is the Chairman and Director of IVF मार्गदर्शन and a pioneer in IVF technology in the region. With over 25 years of experience, he has helped thousands of couples achieve parenthood.\n\nAs the Chief IVF Specialist, Dr. Kulkarni is known for his innovative protocols and outstanding success rates. His vision has shaped IVF मार्गदर्शन into one of India's most trusted fertility centres.",
+          expertise: ['IVF & ICSI', 'Advanced Reproductive Technology', 'Male Infertility', 'Recurrent IVF Failure', 'Fertility Preservation'],
+          languages: ['English', 'Hindi', 'Marathi'],
+        },
+        'dr-swati-kulkarni': {
+          name: 'Dr. Swati Kulkarni',
+          designation: 'M.B.B.S, D.G.O',
+          specialization: 'Obstetrics & Gynaecology',
+          experience_years: 18,
+          success_rate: 68.5,
+          total_patients: 3200,
+          profile_image: '/images/doctor2.png',
+          qualifications: 'M.B.B.S, D.G.O',
+          bio: "Dr. Swati Kulkarni is a specialist in Obstetrics & Gynaecology with 18+ years of clinical experience. She provides comprehensive women's health care with a focus on fertility and reproductive health.\n\nHer patient-centred approach and compassionate care have made her a trusted name among patients seeking fertility treatment.",
+          expertise: ['Obstetrics', 'Gynaecology', 'IUI Treatment', 'Female Infertility', 'PCOS Management'],
+          languages: ['English', 'Hindi', 'Marathi'],
+        },
+        'dr-sharayu-mohite': {
+          name: 'Dr. Sharayu Mohite',
+          designation: 'M.B.B.S, D.G.O, D.N.B',
+          specialization: 'Gynaecology & Infertility',
+          experience_years: 14,
+          success_rate: 65.0,
+          total_patients: 2800,
+          profile_image: '/images/doctor3.png',
+          qualifications: 'M.B.B.S, D.G.O, D.N.B (Obstetrics & Gynaecology)',
+          bio: "Dr. Sharayu Mohite is a DNB-qualified gynaecologist specialising in infertility and reproductive medicine. Her expertise in both gynaecology and fertility treatment makes her a valued member of the IVF मार्गदर्शन team.\n\nShe is committed to providing evidence-based, personalised fertility care to every couple she treats.",
+          expertise: ['Infertility Treatment', 'IVF & ICSI', 'Laparoscopic Surgery', 'PCOS & Endometriosis', 'Recurrent Pregnancy Loss'],
+          languages: ['English', 'Hindi', 'Marathi'],
+        },
+        'dr-uma-gaikwad': {
+          name: 'Dr. Uma Gaikwad',
+          designation: 'Fertility Consultant',
+          specialization: 'Fertility & IVF',
+          experience_years: 12,
+          success_rate: 66.0,
+          total_patients: 2100,
+          profile_image: '/images/doctor4.png',
+          qualifications: 'M.B.B.S, Diploma in Reproductive Medicine',
+          bio: "Dr. Uma Gaikwad is a dedicated fertility consultant at IVF मार्गदर्शन. With 12+ years of experience, she provides compassionate, personalised fertility care to couples on their parenthood journey.\n\nHer empathetic approach and thorough understanding of fertility challenges make her a trusted consultant for patients seeking IVF and fertility treatments.",
+          expertise: ['IVF Treatment', 'IUI', 'Fertility Assessment', 'Ovulation Induction', 'Fertility Counselling'],
+          languages: ['English', 'Hindi', 'Marathi'],
+        },
       };
-      const profileImage = imageMap[slug!] || '/images/imgi_69_2-300x300.png';
-      setDoctor({ name: 'Dr. Priya Sharma', slug, designation: 'Senior Fertility Specialist', specialization: 'IVF & Reproductive Medicine', experience_years: 18, success_rate: 68.5, total_patients: 3200, profile_image: profileImage, qualifications: 'MBBS, MD (Obstetrics & Gynaecology), Fellowship in Reproductive Medicine (UK)', bio: "Dr. Priya Sharma is a renowned IVF specialist with 18+ years of experience. She has helped over 3,200 couples achieve parenthood through personalized, evidence-based fertility treatments. Trained at the Royal College of Obstetricians and Gynaecologists in the UK, Dr. Sharma brings international expertise to every patient she treats.\n\nShe specializes in complex IVF cases, recurrent implantation failure, and recurrent pregnancy loss. Her patient-first approach and compassionate care have made her one of India's most sought-after fertility specialists.", expertise: ['IVF & ICSI', 'Recurrent Implantation Failure', 'PCOS Management', 'Endometriosis', 'Recurrent Pregnancy Loss', 'Fertility Preservation'], languages: ['English', 'Hindi', 'Marathi'] });
+
+      const profile = doctorProfiles[slug!] || doctorProfiles['dr-sachin-kulkarni'];
+      setDoctor({ ...profile, slug });
     }).finally(() => setLoading(false));
   }, [slug]);
 
-  if (loading) return <div className="min-h-screen flex items-center justify-center"><div className="animate-spin w-10 h-10 border-4 border-teal-200 border-t-brand-600 rounded-full" /></div>;
+  if (loading) return <div className="min-h-screen flex items-center justify-center"><div className="animate-spin w-10 h-10 border-4 border-teal-200 border-t-[#4E9FA3] rounded-full" /></div>;
   if (!doctor) return <div className="min-h-screen flex items-center justify-center text-gray-500">Doctor not found</div>;
 
   return (

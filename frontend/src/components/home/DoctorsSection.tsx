@@ -6,10 +6,10 @@ import { doctorApi } from '@/services/api';
 import { useAppStore } from '@/store/useAppStore';
 
 const fallback = [
-  { id: 1, name: 'Dr. Priya Sharma',       slug: 'dr-priya-sharma',       designation: 'Senior Fertility Specialist',  specialization: 'IVF & Reproductive Medicine', experience_years: 18, profile_image: '/images/imgi_69_2-300x300.png', success_rate: 68.5, total_patients: 3200 },
-  { id: 2, name: 'Dr. Rajesh Malhotra',    slug: 'dr-rajesh-malhotra',    designation: 'Lead IVF Consultant',          specialization: 'Male Infertility & Andrology', experience_years: 15, profile_image: '/images/imgi_65_1-300x300.png', success_rate: 72.0, total_patients: 2800 },
-  { id: 3, name: 'Dr. Anjali Desai',       slug: 'dr-anjali-desai',       designation: 'Fertility & IVF Specialist',   specialization: 'PCOS & Endometriosis',        experience_years: 12, profile_image: '/images/imgi_67_4-300x300.png', success_rate: 65.0, total_patients: 2100 },
-  { id: 4, name: 'Dr. Vikram Nair',        slug: 'dr-vikram-nair',        designation: 'Chief Embryologist',           specialization: 'Embryology & Genetic Testing', experience_years: 14, profile_image: '/images/imgi_71_3-300x300.png', success_rate: 70.0, total_patients: 2500 },
+  { id: 1, name: 'Dr. Sachin Kulkarni',  slug: 'dr-sachin-kulkarni',  designation: 'Chairman, Director, Chief IVF Specialist', specialization: 'IVF & Reproductive Medicine', experience_years: 25, profile_image: '/images/doctor1.png', success_rate: 72.0, total_patients: 5000 },
+  { id: 2, name: 'Dr. Swati Kulkarni',   slug: 'dr-swati-kulkarni',   designation: 'M.B.B.S, D.G.O',                           specialization: 'Obstetrics & Gynaecology',    experience_years: 18, profile_image: '/images/doctor2.png', success_rate: 68.5, total_patients: 3200 },
+  { id: 3, name: 'Dr. Sharayu Mohite',   slug: 'dr-sharayu-mohite',   designation: 'M.B.B.S, D.G.O, D.N.B',                   specialization: 'Gynaecology & Infertility',   experience_years: 14, profile_image: '/images/doctor3.png', success_rate: 65.0, total_patients: 2800 },
+  { id: 4, name: 'Dr. Uma Gaikwad',      slug: 'dr-uma-gaikwad',      designation: 'Fertility Consultant',                     specialization: 'Fertility & IVF',            experience_years: 12, profile_image: '/images/doctor4.png', success_rate: 66.0, total_patients: 2100 },
 ];
 
 export default function DoctorsSection() {
