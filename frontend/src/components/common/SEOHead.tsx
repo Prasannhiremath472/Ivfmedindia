@@ -9,6 +9,7 @@ interface SEOHeadProps {
   ogDescription?: string;
   ogImage?: string;
   canonicalPath?: string;
+  canonicalUrl?: string;
   schema?: object | object[];
   noIndex?: boolean;
   ogType?: string;
@@ -22,12 +23,13 @@ export default function SEOHead({
   ogDescription,
   ogImage = DEFAULT_OG_IMAGE,
   canonicalPath,
+  canonicalUrl,
   schema,
   noIndex = false,
   ogType = 'website',
 }: SEOHeadProps) {
   const fullTitle = title.includes(SITE_NAME) ? title : `${title} | ${SITE_NAME}`;
-  const canonical = canonicalPath ? `${SITE_URL}${canonicalPath}` : undefined;
+  const canonical = canonicalUrl || (canonicalPath ? `${SITE_URL}${canonicalPath}` : undefined);
   const schemas = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
 
   return (

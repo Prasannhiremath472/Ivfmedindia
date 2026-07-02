@@ -35,10 +35,13 @@ const connectDB = async () => {
     await sequelize.authenticate();
     logger.info('MySQL Database connected successfully via Sequelize');
 
-    if (process.env.NODE_ENV === 'development') {
-      await sequelize.sync({ alter: true });
-      logger.info('Database synced (alter mode)');
-    }
+    // Auto-sync disabled: pre-existing FK type drift (signed vs unsigned ids)
+    // between models and the local schema crashes mid-alter and can drop tables.
+    // Re-enable once that drift is fixed, or run migrations manually instead.
+    // if (process.env.NODE_ENV === 'development') {
+    //   await sequelize.sync({ alter: true });
+    //   logger.info('Database synced (alter mode)');
+    // }
   } catch (error) {
     // Log the error but do NOT crash the server — allow health checks to work
     // even when DB isn't configured yet
