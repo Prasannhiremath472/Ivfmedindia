@@ -28,7 +28,7 @@ const FACULTY = [
       'Jehangir Hospital, Pune',
       'Academic Faculty and Trainer',
     ],
-    img: '/images/doctor2.png',
+    img: '/images/doctor2.jpeg',
   },
   {
     name: 'Dr. Hrishikesh Ashok Pandit',
@@ -38,7 +38,7 @@ const FACULTY = [
       'Fellowship in Minimal Access Surgery',
       'Academic Faculty and Trainer',
     ],
-    img: '/images/doctor3.png',
+    img: '/images/doctor3.jpeg',
   },
   {
     name: 'Dr. Monika Hrishikesh Pandit',
@@ -47,7 +47,7 @@ const FACULTY = [
       'Consultant Obstetrician & Gynecologist',
       'Fertility & Reproductive Health Specialist',
     ],
-    img: '/images/doctor4.png',
+    img: '/images/doctor4.jpeg',
   },
 ];
 
@@ -74,7 +74,7 @@ const SCHEDULE = [
 const GOLD = 'linear-gradient(135deg,#E8C547 0%,#C9A227 60%,#A67C00 100%)';
 
 function RegisterForm({ compact = false }: { compact?: boolean }) {
-  const [form, setForm] = useState({ name: '', phone: '', email: '', designation: '', city: '' });
+  const [form, setForm] = useState({ name: '', phone: '', city: '' });
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
@@ -87,11 +87,10 @@ function RegisterForm({ compact = false }: { compact?: boolean }) {
       await leadApi.create({
         name: form.name,
         phone: form.phone,
-        email: form.email || undefined,
         city: form.city || undefined,
         source: 'website',
         utm_campaign: 'fertility-course-2026',
-        message: `Course Registration: Advanced Certificate Course in Fertility Management (Jul-Sep 2026)\nDesignation: ${form.designation || 'N/A'}`,
+        message: 'Course Registration: Advanced Certificate Course in Fertility Management (Jul-Sep 2026)',
       });
       setSubmitted(true);
     } catch {
@@ -131,35 +130,21 @@ function RegisterForm({ compact = false }: { compact?: boolean }) {
               <input className={inputCls} placeholder="Dr. Your Name" required
                 value={form.name} onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))} />
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className={labelCls}>Mobile *</label>
-                <div className="flex">
-                  <span className="inline-flex items-center px-3 rounded-l-xl text-white/70 text-sm font-bold border border-r-0 border-white/20"
-                    style={{ background: 'rgba(255,255,255,0.08)' }}>+91</span>
-                  <input type="tel" required pattern="[6-9]\d{9}"
-                    className="flex-1 bg-white/10 border border-white/20 rounded-r-xl px-3 py-3 text-sm text-white placeholder-white/50 focus:outline-none focus:border-[#E8C547] transition-all"
-                    placeholder="98765 43210" value={form.phone}
-                    onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))} />
-                </div>
-              </div>
-              <div>
-                <label className={labelCls}>Email</label>
-                <input type="email" className={inputCls} placeholder="you@example.com"
-                  value={form.email} onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))} />
+            <div>
+              <label className={labelCls}>Mobile *</label>
+              <div className="flex">
+                <span className="inline-flex items-center px-3 rounded-l-xl text-white/70 text-sm font-bold border border-r-0 border-white/20"
+                  style={{ background: 'rgba(255,255,255,0.08)' }}>+91</span>
+                <input type="tel" required pattern="[6-9]\d{9}"
+                  className="flex-1 bg-white/10 border border-white/20 rounded-r-xl px-3 py-3 text-sm text-white placeholder-white/50 focus:outline-none focus:border-[#E8C547] transition-all"
+                  placeholder="98765 43210" value={form.phone}
+                  onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))} />
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className={labelCls}>Designation</label>
-                <input className={inputCls} placeholder="e.g. General Practitioner"
-                  value={form.designation} onChange={(e) => setForm((f) => ({ ...f, designation: e.target.value }))} />
-              </div>
-              <div>
-                <label className={labelCls}>City</label>
-                <input className={inputCls} placeholder="Your city"
-                  value={form.city} onChange={(e) => setForm((f) => ({ ...f, city: e.target.value }))} />
-              </div>
+            <div>
+              <label className={labelCls}>City</label>
+              <input className={inputCls} placeholder="Your city"
+                value={form.city} onChange={(e) => setForm((f) => ({ ...f, city: e.target.value }))} />
             </div>
 
             {error && <p className="text-red-400 text-xs">{error}</p>}
