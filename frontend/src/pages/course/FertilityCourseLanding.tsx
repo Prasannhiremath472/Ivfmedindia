@@ -283,7 +283,7 @@ export default function FertilityCourseLanding() {
               className="rounded-2xl p-5 text-center transition-transform hover:-translate-y-1"
               style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>
               <img src={f.img} alt={f.name}
-                className="w-32 h-32 rounded-full object-cover mx-auto mb-4 border-2"
+                className="w-56 h-56 rounded-full object-cover mx-auto mb-4 border-4"
                 style={{ borderColor: '#C9A227' }} loading="lazy" />
               <h3 className="font-bold text-sm mb-1">{f.name}</h3>
               <p className="text-xs mb-3" style={{ color: '#E8C547' }}>{f.qualification}</p>
