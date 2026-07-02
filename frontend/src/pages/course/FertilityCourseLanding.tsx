@@ -39,6 +39,7 @@ const FACULTY = [
       'Academic Faculty and Trainer',
     ],
     img: '/images/doctor3.jpeg',
+    imgPosition: 'center 15%',
   },
   {
     name: 'Dr. Monika Hrishikesh Pandit',
@@ -48,6 +49,7 @@ const FACULTY = [
       'Fertility & Reproductive Health Specialist',
     ],
     img: '/images/doctor4.jpeg',
+    imgPosition: 'center 15%',
   },
 ];
 
@@ -100,7 +102,7 @@ function RegisterForm({ compact = false }: { compact?: boolean }) {
     }
   };
 
-  const inputCls = 'w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-white/50 focus:outline-none focus:border-[#E8C547] focus:ring-2 focus:ring-[#C9A227]/30 transition-all backdrop-blur-sm';
+  const inputCls = 'w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-base sm:text-sm text-white placeholder-white/50 focus:outline-none focus:border-[#E8C547] focus:ring-2 focus:ring-[#C9A227]/30 transition-all backdrop-blur-sm';
   const labelCls = 'block text-xs font-bold text-white/70 uppercase tracking-widest mb-1.5';
 
   return (
@@ -136,7 +138,7 @@ function RegisterForm({ compact = false }: { compact?: boolean }) {
                 <span className="inline-flex items-center px-3 rounded-l-xl text-white/70 text-sm font-bold border border-r-0 border-white/20"
                   style={{ background: 'rgba(255,255,255,0.08)' }}>+91</span>
                 <input type="tel" required pattern="[6-9]\d{9}"
-                  className="flex-1 bg-white/10 border border-white/20 rounded-r-xl px-3 py-3 text-sm text-white placeholder-white/50 focus:outline-none focus:border-[#E8C547] transition-all"
+                  className="flex-1 bg-white/10 border border-white/20 rounded-r-xl px-3 py-3 text-base sm:text-sm text-white placeholder-white/50 focus:outline-none focus:border-[#E8C547] transition-all"
                   placeholder="98765 43210" value={form.phone}
                   onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))} />
               </div>
@@ -283,8 +285,8 @@ export default function FertilityCourseLanding() {
               className="rounded-2xl p-5 text-center transition-transform hover:-translate-y-1"
               style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>
               <img src={f.img} alt={f.name}
-                className="w-56 h-56 rounded-full object-cover mx-auto mb-4 border-4"
-                style={{ borderColor: '#C9A227' }} loading="lazy" />
+                className="w-32 h-32 sm:w-44 sm:h-44 lg:w-56 lg:h-56 rounded-full object-cover mx-auto mb-4 border-4"
+                style={{ borderColor: '#C9A227', objectPosition: f.imgPosition || 'center' }} loading="lazy" />
               <h3 className="font-bold text-sm mb-1">{f.name}</h3>
               <p className="text-xs mb-3" style={{ color: '#E8C547' }}>{f.qualification}</p>
               <ul className="text-xs text-gray-300 space-y-1 text-left">
@@ -305,8 +307,8 @@ export default function FertilityCourseLanding() {
         <div className="grid lg:grid-cols-5 gap-8">
           <div className="lg:col-span-3">
             <h2 className="text-xl sm:text-2xl font-black mb-5">Course Schedule</h2>
-            <div className="rounded-2xl overflow-hidden border" style={{ borderColor: 'rgba(201,162,39,0.3)' }}>
-              <table className="w-full text-sm">
+            <div className="rounded-2xl overflow-x-auto border" style={{ borderColor: 'rgba(201,162,39,0.3)' }}>
+              <table className="w-full text-sm min-w-[420px]">
                 <thead>
                   <tr style={{ background: 'rgba(201,162,39,0.15)' }}>
                     <th className="text-left px-4 py-3 font-bold" style={{ color: '#E8C547' }}>Date</th>
