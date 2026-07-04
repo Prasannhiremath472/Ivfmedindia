@@ -23,7 +23,7 @@ const createLead = async (req, res) => {
     res.status(201).json({ success: true, message: 'Thank you! Our team will contact you shortly.', lead: { id: lead.id } });
   } catch (error) {
     logger.error('Create lead error:', error);
-    res.status(500).json({ success: false, message: 'Failed to submit inquiry' });
+    res.status(500).json({ success: false, message: 'Failed to submit inquiry', debug: error.message });
   }
 };
 
