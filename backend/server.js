@@ -16,6 +16,10 @@ const { notFound, errorHandler } = require('./middleware/errorHandler');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// Hostinger serves this app behind a reverse proxy (LiteSpeed), which sets
+// X-Forwarded-For. Without this, express-rate-limit throws on every request.
+app.set('trust proxy', 1);
+
 // ─── Ensure log directory exists ─────────────────────────────────────────────
 const logsDir = path.join(__dirname, 'logs');
 if (!fs.existsSync(logsDir)) fs.mkdirSync(logsDir, { recursive: true });
