@@ -1,11 +1,21 @@
 import { useState } from 'react';
 import {
   Phone, Mail, Globe, CheckCircle, Calendar, Clock, Video,
-  Award, BookOpen, Stethoscope, HeartPulse, ShieldCheck, Users, Sparkles,
+  Award, BookOpen, Stethoscope, HeartPulse, ShieldCheck, Users,
 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 import SEOHead from '@/components/common/SEOHead';
 import { leadApi } from '@/services/api';
+
+const HERO_SLIDES = [
+  '/images/IVF SLIDE 012 copy.jpg.jpeg',
+  '/images/IVF SLIDE 023 copy.jpg.jpeg',
+];
 
 const FACULTY = [
   {
@@ -73,7 +83,8 @@ const SCHEDULE = [
   { date: '23 Sep 2026', topic: 'Male & Female Sexual Dysfunction' },
 ];
 
-const GOLD = 'linear-gradient(135deg,#E8C547 0%,#C9A227 60%,#A67C00 100%)';
+const PRIMARY = 'linear-gradient(135deg,#7A7CF5 0%,#5454F0 60%,#3D3DD6 100%)';
+const GREEN = '#6CC078';
 
 function RegisterForm({ compact = false }: { compact?: boolean }) {
   const [form, setForm] = useState({ name: '', phone: '', city: '' });
@@ -102,15 +113,15 @@ function RegisterForm({ compact = false }: { compact?: boolean }) {
     }
   };
 
-  const inputCls = 'w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-base sm:text-sm text-white placeholder-white/50 focus:outline-none focus:border-[#E8C547] focus:ring-2 focus:ring-[#C9A227]/30 transition-all backdrop-blur-sm';
+  const inputCls = 'w-full bg-white/10 border border-white/20 rounded-xl px-4 py-3 text-base sm:text-sm text-white placeholder-white/50 focus:outline-none focus:border-[#7A7CF5] focus:ring-2 focus:ring-[#5454F0]/30 transition-all backdrop-blur-sm';
   const labelCls = 'block text-xs font-bold text-white/70 uppercase tracking-widest mb-1.5';
 
   return (
     <div className="relative rounded-3xl overflow-hidden"
-      style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(201,162,39,0.35)', backdropFilter: 'blur(16px)' }}>
-      <div className="px-6 sm:px-7 py-5 flex items-center gap-3" style={{ background: GOLD }}>
+      style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(84,84,240,0.35)', backdropFilter: 'blur(16px)' }}>
+      <div className="px-6 sm:px-7 py-5 flex items-center gap-3" style={{ background: PRIMARY }}>
         <div className="w-10 h-10 bg-white/25 rounded-2xl flex items-center justify-center flex-shrink-0">
-          <Sparkles size={20} className="text-[#14110a]" />
+          <Calendar size={20} className="text-[#14110a]" />
         </div>
         <div>
           <div className="text-[#14110a] font-black text-base sm:text-lg leading-tight">Register for Free</div>
@@ -121,7 +132,7 @@ function RegisterForm({ compact = false }: { compact?: boolean }) {
       <div className={compact ? 'p-6 sm:p-7' : 'p-7'}>
         {submitted ? (
           <div className="text-center py-8">
-            <CheckCircle size={56} className="mx-auto mb-4" style={{ color: '#E8C547' }} />
+            <CheckCircle size={56} className="mx-auto mb-4" style={{ color: '#7A7CF5' }} />
             <h3 className="text-xl font-black mb-2 text-white">Registration Received!</h3>
             <p className="text-gray-300 text-sm">Our team will contact you shortly with joining details for the course.</p>
           </div>
@@ -138,7 +149,7 @@ function RegisterForm({ compact = false }: { compact?: boolean }) {
                 <span className="inline-flex items-center px-3 rounded-l-xl text-white/70 text-sm font-bold border border-r-0 border-white/20"
                   style={{ background: 'rgba(255,255,255,0.08)' }}>+91</span>
                 <input type="tel" required pattern="[6-9]\d{9}"
-                  className="flex-1 bg-white/10 border border-white/20 rounded-r-xl px-3 py-3 text-base sm:text-sm text-white placeholder-white/50 focus:outline-none focus:border-[#E8C547] transition-all"
+                  className="flex-1 bg-white/10 border border-white/20 rounded-r-xl px-3 py-3 text-base sm:text-sm text-white placeholder-white/50 focus:outline-none focus:border-[#7A7CF5] transition-all"
                   placeholder="98765 43210" value={form.phone}
                   onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))} />
               </div>
@@ -153,7 +164,7 @@ function RegisterForm({ compact = false }: { compact?: boolean }) {
 
             <button type="submit" disabled={loading}
               className="w-full font-black py-4 rounded-2xl text-base text-[#14110a] transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-60 hover:-translate-y-0.5"
-              style={{ background: GOLD, boxShadow: '0 6px 24px rgba(201,162,39,0.4)' }}>
+              style={{ background: PRIMARY, boxShadow: '0 6px 24px rgba(84,84,240,0.4)' }}>
               <Calendar size={18} />
               {loading ? 'Submitting...' : 'Register Now — It\'s Free'}
             </button>
@@ -167,7 +178,7 @@ function RegisterForm({ compact = false }: { compact?: boolean }) {
 
 export default function FertilityCourseLanding() {
   return (
-    <div className="min-h-screen text-white overflow-x-hidden" style={{ background: 'linear-gradient(180deg, #0a0e14 0%, #0d2124 35%, #14110a 100%)' }}>
+    <div className="min-h-screen text-white overflow-x-hidden" style={{ background: 'linear-gradient(180deg, #0a0e18 0%, #12122e 35%, #0a0e18 100%)' }}>
       <SEOHead
         title="Advanced Certificate Course in Fertility Management | Free Registration"
         description="Free 9-session online certificate course in Fertility Management for GPs, family physicians & gynecologists. Learn from Sunanda IVF Academy faculty. Jul-Sep 2026. Limited seats."
@@ -177,24 +188,55 @@ export default function FertilityCourseLanding() {
       />
 
       {/* Minimal header */}
-      <header className="relative z-20 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <header className="relative z-20 border-b" style={{ borderColor: 'rgba(240,120,36,0.3)' }}>
+        <div className="max-w-7xl mx-auto px-6 py-3 sm:py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src="/IVF LOGO.png" alt="IVF Logo" className="h-9 w-auto object-contain" />
-            <span className="font-black text-sm tracking-wide hidden sm:block">SUNANDA IVF ACADEMY</span>
+            <div className="bg-white rounded-lg px-3 h-12 sm:h-14 flex items-center">
+              <img src="/images/sunanda_logo.jpeg" alt="Sunanda IVF" className="h-7 sm:h-8 w-auto object-contain" />
+            </div>
+            <div className="h-9 w-px bg-white/15" />
+            <div className="bg-white rounded-lg px-3 h-12 sm:h-14 flex items-center">
+              <img src="/images/Agoccare_logo.jpeg" alt="AGOC Care Pvt Ltd" className="h-10 sm:h-12 w-auto object-contain" />
+            </div>
           </div>
           <div className="hidden sm:flex items-center gap-2 text-xs font-semibold text-white/60">
-            <Users size={14} style={{ color: '#E8C547' }} /> Organized with AGOC Care Pvt Ltd
+            <Users size={14} style={{ color: '#F07824' }} /> Sunanda IVF Academy & AGOC Care Pvt Ltd
           </div>
         </div>
       </header>
 
+      {/* Hero image slider */}
+      <section className="relative z-10">
+        <style>{`
+          .hero-slider .swiper-pagination-bullet { background: #ffffff; opacity: 0.5; }
+          .hero-slider .swiper-pagination-bullet-active { background: #F07824; opacity: 1; }
+          .hero-slider .swiper-button-next, .hero-slider .swiper-button-prev { color: #F07824; }
+          .hero-slider .swiper-button-next:after, .hero-slider .swiper-button-prev:after { font-size: 22px; }
+        `}</style>
+        <Swiper
+          modules={[Autoplay, Pagination, Navigation]}
+          autoplay={{ delay: 5000, disableOnInteraction: false }}
+          pagination={{ clickable: true }}
+          navigation
+          loop
+          className="hero-slider"
+        >
+          {HERO_SLIDES.map((src) => (
+            <SwiperSlide key={src}>
+              <div className="w-full h-[100svh]">
+                <img src={src} alt="Advanced Certificate Course in Fertility Management" className="w-full h-full object-cover" />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </section>
+
       {/* Hero + Form (above the fold) */}
       <section className="relative overflow-hidden">
-        <div className="absolute top-[-10%] left-[-5%] w-[36rem] h-[36rem] rounded-full blur-3xl opacity-25 pointer-events-none" style={{ background: 'radial-gradient(circle, #C9A227, transparent)' }} />
-        <div className="absolute bottom-[-15%] right-[-5%] w-[30rem] h-[30rem] rounded-full blur-3xl opacity-20 pointer-events-none" style={{ background: 'radial-gradient(circle, #4E9FA3, transparent)' }} />
+        <div className="absolute top-[-10%] left-[-5%] w-[36rem] h-[36rem] rounded-full blur-3xl opacity-25 pointer-events-none" style={{ background: 'radial-gradient(circle, #5454F0, transparent)' }} />
+        <div className="absolute bottom-[-15%] right-[-5%] w-[30rem] h-[30rem] rounded-full blur-3xl opacity-20 pointer-events-none" style={{ background: 'radial-gradient(circle, #F07824, transparent)' }} />
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none"
-          style={{ backgroundImage: 'repeating-linear-gradient(135deg, #C9A227 0px, transparent 1px, transparent 60px)', backgroundSize: '60px 60px' }} />
+          style={{ backgroundImage: 'repeating-linear-gradient(135deg, #5454F0 0px, transparent 1px, transparent 60px)', backgroundSize: '60px 60px' }} />
 
         <div className="max-w-7xl mx-auto px-6 py-12 sm:py-16 relative z-10">
           <div className="grid lg:grid-cols-5 gap-10 lg:gap-14 items-start">
@@ -203,14 +245,14 @@ export default function FertilityCourseLanding() {
             <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }}
               className="lg:col-span-3">
               <div className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6"
-                style={{ background: 'rgba(201,162,39,0.15)', border: '1px solid rgba(201,162,39,0.4)', color: '#E8C547' }}>
-                <Sparkles size={14} /> Registration Open Now
+                style={{ background: 'rgba(84,84,240,0.15)', border: '1px solid rgba(84,84,240,0.4)', color: '#7A7CF5' }}>
+                Registration Open Now
               </div>
 
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black leading-[1.05] mb-5">
                 Advanced Certificate Course
                 <br />
-                <span style={{ background: GOLD, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                <span style={{ background: PRIMARY, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                   in Fertility Management
                 </span>
               </h1>
@@ -228,7 +270,7 @@ export default function FertilityCourseLanding() {
                 ].map((item) => (
                   <div key={item.label} className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold"
                     style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)' }}>
-                    <item.icon size={16} style={{ color: '#E8C547' }} />
+                    <item.icon size={16} style={{ color: '#7A7CF5' }} />
                     {item.label}
                   </div>
                 ))}
@@ -239,7 +281,7 @@ export default function FertilityCourseLanding() {
                 <div className="flex -space-x-3">
                   {FACULTY.map((f) => (
                     <img key={f.name} src={f.img} alt={f.name} loading="lazy"
-                      className="w-11 h-11 rounded-full border-2 object-cover" style={{ borderColor: '#C9A227' }} />
+                      className="w-11 h-11 rounded-full border-2 object-cover" style={{ borderColor: '#5454F0' }} />
                   ))}
                 </div>
                 <div>
@@ -266,7 +308,7 @@ export default function FertilityCourseLanding() {
             <motion.div key={h.label} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.08 }}
               className="rounded-2xl p-5 text-center flex flex-col items-center gap-3 transition-transform hover:-translate-y-1"
-              style={{ background: 'linear-gradient(160deg,#E8C547,#C9A227)' }}>
+              style={{ background: i % 2 === 0 ? 'linear-gradient(160deg,#7A7CF5,#5454F0)' : `linear-gradient(160deg,#8ED198,${GREEN})` }}>
               <h.icon size={30} className="text-[#14110a]" />
               <p className="text-xs sm:text-sm font-bold text-[#14110a] leading-snug">{h.label}</p>
             </motion.div>
@@ -286,13 +328,13 @@ export default function FertilityCourseLanding() {
               style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>
               <img src={f.img} alt={f.name}
                 className="w-32 h-32 sm:w-44 sm:h-44 lg:w-56 lg:h-56 rounded-full object-cover mx-auto mb-4 border-4"
-                style={{ borderColor: '#C9A227', objectPosition: f.imgPosition || 'center' }} loading="lazy" />
+                style={{ borderColor: '#5454F0', objectPosition: f.imgPosition || 'center' }} loading="lazy" />
               <h3 className="font-bold text-sm mb-1">{f.name}</h3>
-              <p className="text-xs mb-3" style={{ color: '#E8C547' }}>{f.qualification}</p>
+              <p className="text-xs mb-3" style={{ color: '#7A7CF5' }}>{f.qualification}</p>
               <ul className="text-xs text-gray-300 space-y-1 text-left">
                 {f.points.map((p) => (
                   <li key={p} className="flex items-start gap-1.5">
-                    <span className="mt-1 w-1 h-1 rounded-full flex-shrink-0" style={{ background: '#E8C547' }} />
+                    <span className="mt-1 w-1 h-1 rounded-full flex-shrink-0" style={{ background: '#7A7CF5' }} />
                     {p}
                   </li>
                 ))}
@@ -307,12 +349,12 @@ export default function FertilityCourseLanding() {
         <div className="grid lg:grid-cols-5 gap-8">
           <div className="lg:col-span-3">
             <h2 className="text-xl sm:text-2xl font-black mb-5">Course Schedule</h2>
-            <div className="rounded-2xl overflow-x-auto border" style={{ borderColor: 'rgba(201,162,39,0.3)' }}>
+            <div className="rounded-2xl overflow-x-auto border" style={{ borderColor: 'rgba(84,84,240,0.3)' }}>
               <table className="w-full text-sm min-w-[420px]">
                 <thead>
-                  <tr style={{ background: 'rgba(201,162,39,0.15)' }}>
-                    <th className="text-left px-4 py-3 font-bold" style={{ color: '#E8C547' }}>Date</th>
-                    <th className="text-left px-4 py-3 font-bold" style={{ color: '#E8C547' }}>Session Topic</th>
+                  <tr style={{ background: 'rgba(84,84,240,0.15)' }}>
+                    <th className="text-left px-4 py-3 font-bold" style={{ color: '#7A7CF5' }}>Date</th>
+                    <th className="text-left px-4 py-3 font-bold" style={{ color: '#7A7CF5' }}>Session Topic</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -329,17 +371,17 @@ export default function FertilityCourseLanding() {
 
           <div className="lg:col-span-2">
             <div className="rounded-2xl p-7 h-full flex flex-col justify-center text-center"
-              style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(201,162,39,0.35)' }}>
-              <h3 className="text-2xl sm:text-3xl font-black mb-4" style={{ color: '#E8C547' }}>FREE COURSE</h3>
+              style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(84,84,240,0.35)' }}>
+              <h3 className="text-2xl sm:text-3xl font-black mb-4" style={{ color: '#7A7CF5' }}>FREE COURSE</h3>
               <div className="flex items-center justify-center gap-3 mb-4 text-gray-200 text-sm">
-                <Video size={20} style={{ color: '#4E9FA3' }} />
+                <Video size={20} style={{ color: '#F07824' }} />
                 9 Online Zoom Sessions + 1 Offline Grand Workshop
               </div>
               <div className="flex items-center justify-center gap-2 text-sm text-gray-300 mb-1">
-                <ShieldCheck size={16} style={{ color: '#E8C547' }} /> Limited Seats
+                <ShieldCheck size={16} style={{ color: '#7A7CF5' }} /> Limited Seats
               </div>
               <div className="flex items-center justify-center gap-2 text-sm text-gray-300">
-                <Award size={16} style={{ color: '#E8C547' }} /> Certificate Awarded Upon Completion
+                <Award size={16} style={{ color: '#7A7CF5' }} /> Certificate Awarded Upon Completion
               </div>
             </div>
           </div>
@@ -352,7 +394,7 @@ export default function FertilityCourseLanding() {
         <p className="text-gray-300 mb-8">Scroll up and register in under a minute — our team will confirm your seat by phone.</p>
         <a href="#top" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
           className="inline-flex items-center gap-2 font-black text-base px-8 py-4 rounded-2xl text-[#14110a] transition-transform hover:-translate-y-0.5"
-          style={{ background: GOLD, boxShadow: '0 8px 30px rgba(201,162,39,0.4)' }}>
+          style={{ background: PRIMARY, boxShadow: '0 8px 30px rgba(84,84,240,0.4)' }}>
           Register Now
         </a>
       </section>
